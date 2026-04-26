@@ -123,8 +123,10 @@ def load_model(model_path, beam_size, topk, device, tokenizer):
     parser = _get_parser()
     opt = parser.parse_args(args=[])
     if "cuda" in device:
+        # get the gpu id
+        gpu_id = int(device.split(":")[1])
         # print("gpu mode...")
-        opt.gpu = 0
+        opt.gpu = gpu_id
     else:
         # print("cpu mode...")
         opt.gpu = -1
